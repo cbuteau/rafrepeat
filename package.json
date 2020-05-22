@@ -1,0 +1,28 @@
+{
+  "name": "rafrepeat",
+  "version": "1.0.0",
+  "description": "A consensus on how to use requestAnimationFrame and cancelAnimationFrame.",
+  "main": "rafrepeat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "min": "node .\\node_modules\\uglify-js\\bin\\uglifyjs -c -o ./rafrepeat.min.js rafrepeat.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbuteau/rafrepeat.git"
+  },
+  "keywords": [
+    "web",
+    "raf",
+    "requestAnimationFrame"
+  ],
+  "author": "cbuteau",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/cbuteau/rafrepeat/issues"
+  },
+  "homepage": "https://github.com/cbuteau/rafrepeat#readme",
+  "devDependencies": {
+    "uglify": "^0.1.5"
+  }
+}

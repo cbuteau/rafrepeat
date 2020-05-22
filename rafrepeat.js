@@ -1,10 +1,32 @@
 
-function RafRepeater(callback, options) {
-  this.callback = callback;
-  this.options = options;
+function createClosure(repeaterPtr, callback, options) {
+  return function() {
+    var continueRun;
+    if (options.forgetTry) {
+      // Save complexity without a try catch when solidified.
+      continueRun = callback(options);
+    } else {
+      try {
+        callback(options);
+      } catch (e) {
+        console.log(options.name);
+        console.error(e);
+      }
+    }
+    if (continueRun) {
+      repeaterPtr.start();
+    }
+  };
 }
 
-RafRepeater.prototype {
+
+function RafRepeater(callback, options) {
+  this.options = options;
+  this.callback = createClosure(this, callback, options);
+  this.start();
+}
+
+RafRepeater.prototype = {
   start: function() {
     this.token = requestAnimationFrame(this.callback.bind(this));
   },
@@ -13,4 +35,15 @@ RafRepeater.prototype {
   }
 };
 
-window.RafRepeater = RafRepeater;
+
+var exposed = RafRepeater;
+
+if (typeof define === 'function' && define.amd) {
+  define(function() {
+    return exposed;
+  });
+} else if (typeof exports === 'object') {
+  module.exports = exposed;
+} else {
+  window.RafRepeater = exposed;
+}
