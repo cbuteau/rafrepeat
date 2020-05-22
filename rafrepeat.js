@@ -38,12 +38,11 @@ RafRepeater.prototype = {
 
 var exposed = RafRepeater;
 
+// only exposed for browsers not NODE JS.
 if (typeof define === 'function' && define.amd) {
   define(function() {
     return exposed;
   });
-} else if (typeof exports === 'object') {
-  module.exports = exposed;
 } else {
   window.RafRepeater = exposed;
 }
