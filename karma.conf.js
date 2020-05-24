@@ -10,7 +10,8 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'requirejs', 'chai'],
+    //frameworks: ['mocha', 'requirejs', 'chai'],
+    frameworks: ['jasmine', 'requirejs'],
 
 
     // list of files / patterns to load in the browser
@@ -30,8 +31,7 @@ module.exports = function(config) {
         "karma-chrome-launcher",
         "karma-firefox-launcher",
         "karma-junit-reporter",
-        'karma-mocha',
-        "karma-chai",
+        "karma-jasmine",
         "karma-requirejs",
         "karma-coverage"
     ],

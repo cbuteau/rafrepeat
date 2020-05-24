@@ -1,18 +1,23 @@
-describe('Run some basic tests', function() {
   var repeater;
+  // repeater = new RafRepeater(function() {
+  //
+  //   return true;
+  // }, {});
 
-  before(function(done) {
-    require(['rafrepeat'], function(RafRepeater) {
-      repeater = new RafRepeater(function() {
+  describe('Run some basic tests', function() {
 
-        return true;
-      }, {});
+    // beforeAll(function(done) {
+    //   require(['rafrepeat'], function(RafRepeater) {
+    //     repeater = new RafRepeater(function() {
+    //
+    //       return true;
+    //     }, {});
+    //
+    //     done();
+    //   });
+    // });
 
-      done();
+    it ('instance of', function() {
+      expect(repeater instanceof RafRepeater).toBe(true);
     });
   });
-
-  it ('instance of', function() {
-    expect(repeater instanceof RafRepeater).to.equal(true);
-  });
-});

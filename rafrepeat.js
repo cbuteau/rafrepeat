@@ -7,7 +7,7 @@ function createClosure(repeaterPtr, callback, options) {
       continueRun = callback(options);
     } else {
       try {
-        callback(options);
+        continueRun = callback(options);
       } catch (e) {
         console.log(options.name);
         console.error(e);
@@ -28,7 +28,7 @@ function RafRepeater(callback, options) {
 
 RafRepeater.prototype = {
   start: function() {
-    this.token = requestAnimationFrame(this.callback.bind(this));
+    this.token = requestAnimationFrame(this.callback);
   },
   pause: function() {
     cancelAnimationFrame(this.token);
