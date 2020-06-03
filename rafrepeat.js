@@ -11,10 +11,16 @@ function createClosure(repeaterPtr, callback, options) {
       } catch (e) {
         console.log(options.name);
         console.error(e);
+        continueRun = true;
+        if (options.notContinue) {
+          continueRun = false;
+        }
       }
     }
     if (continueRun) {
       repeaterPtr.start();
+    } else {
+      repeaterPtr._isRunning = false;
     }
   };
 }
@@ -29,12 +35,21 @@ function RafRepeater(callback, options) {
 RafRepeater.prototype = {
   start: function() {
     this.token = requestAnimationFrame(this.callback);
+    this._isRunning = true;
   },
   pause: function() {
     cancelAnimationFrame(this.token);
+    this._isRunning =false;
   }
 };
 
+Object.defineProperties(RafRepeater.prototype, {
+  isRunning: {
+    get: function() {
+      return this._isRunning;
+    }
+  }
+});
 
 var exposed = RafRepeater;
 
