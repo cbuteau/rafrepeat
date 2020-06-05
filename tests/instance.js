@@ -1,20 +1,26 @@
-require(['rafrepeat'], function(RafRepeater) {
+
+  var ctor;
 
   describe('Confirm contructor', function() {
-    var repeater = new RafRepeater(function() {
-      for (var i = 0; i < 1000000; i++) {
-        console.log(i);
-      }
-      return true;
-    }, {});
+    beforeAll(function(done) {
+      require(['rafrepeat'], function(RafRepeater) {
+        ctor = RafRepeater;
+        var repeater = new RafRepeater(function() {
+          for (var i = 0; i < 1000000; i++) {
+            console.log(i);
+          }
+          return true;
+        }, {});
+        done();
+      });
+    });
+
 
     it ('instanceof', function() {
       expect(repeater instanceof RafRepeater).toBe(true);
     });
 
     it ('param count', function() {
-      expect(RafRepeater.length).toBe(2);
+      expect(ctor.length).toBe(2);
     });
   });
-
-});
