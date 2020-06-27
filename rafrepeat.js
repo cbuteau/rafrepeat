@@ -1,4 +1,9 @@
 
+const DEFAULT_OPTIONS = {
+  forgetTry: false,
+  notContinue: false
+};
+
 function createClosure(repeaterPtr, callback, options) {
   return function() {
     var continueRun;
@@ -27,7 +32,8 @@ function createClosure(repeaterPtr, callback, options) {
 
 
 function RafRepeater(callback, options) {
-  this.options = options;
+  var tempOpts = options ? options : {};
+  this.options = Object.assign(tempOpts, DEFAULT_OPTIONS);
   this.callback = createClosure(this, callback, options);
   this.start();
 }
