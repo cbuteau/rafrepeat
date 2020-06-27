@@ -6,7 +6,7 @@
   "scripts": {
     "test": ".\\node_modules\\.bin\\karma start",
     "test.ci": ".\\node_modules\\.bin\\karma start --single-run",
-    "min": "node .\\node_modules\\uglify-js\\bin\\uglifyjs -c -o ./rafrepeat.min.js rafrepeat.js"
+    "min": "node .\\node_modules\\terser\\bin\\terser -c -o ./rafrepeat.min.js rafrepeat.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "phantomjs": "^2.1.7",
     "qs": "^6.9.4",
     "requirejs": "^2.3.6",
+    "terser": "4.8.0",
     "uglify": "^0.1.5",
     "uglify-js": "^3.9.4"
   }
