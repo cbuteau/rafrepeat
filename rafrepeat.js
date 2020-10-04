@@ -34,7 +34,7 @@ function createClosure(repeaterPtr, callback, options) {
 function RafRepeater(callback, options) {
   var tempOpts = options ? options : {};
   this.options = Object.assign(tempOpts, DEFAULT_OPTIONS);
-  this.callback = createClosure(this, callback, options);
+  this.callback = createClosure(this, callback, this.options);
   this.start();
 }
 
