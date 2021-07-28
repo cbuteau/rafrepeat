@@ -4,6 +4,12 @@ const DEFAULT_OPTIONS = {
   notContinue: false
 };
 
+const SPANS = {
+  ONE: 100,
+  TWO: 200,
+  TWO_FIFTY: 250
+};
+
 function createClosure(repeaterPtr, callback, options) {
   return function() {
     var continueRun;
@@ -30,6 +36,17 @@ function createClosure(repeaterPtr, callback, options) {
   };
 }
 
+function TimeStamp(span) {
+  this._start = Date.now();
+  this._span = span;
+}
+
+TimeStamp.prototype = {
+  checkExpired: function() {
+    var now = Date.now();
+    return (now = this._start) >= this._span;
+  }
+};
 
 function RafRepeater(callback, options) {
   var tempOpts = options ? options : {};
@@ -46,6 +63,9 @@ RafRepeater.prototype = {
   pause: function() {
     cancelAnimationFrame(this.token);
     this._isRunning =false;
+  },
+  ts: function(span) {
+    return new TimeStamp(span);
   }
 };
 
@@ -53,6 +73,11 @@ Object.defineProperties(RafRepeater.prototype, {
   isRunning: {
     get: function() {
       return this._isRunning;
+    }
+  },
+  SPANS: {
+    get: function() {
+      return SPANS;
     }
   }
 });
