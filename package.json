@@ -44,7 +44,7 @@
     "karma-safari-launcher": "^1.0.0",
     "lodash": "^4.17.15",
     "phantomjs": "^2.1.7",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "requirejs": "^2.3.6",
     "terser": "4.8.0",
     "uglify": "^0.1.5",
